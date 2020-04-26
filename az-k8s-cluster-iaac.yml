@@ -25,7 +25,7 @@ steps:
     backendServiceArm: 'az-rm-sc'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
-    backendAzureRmResourceGroupLocation: 'canadaeast'
+    backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageaccountidriss'
     backendAzureRmContainerName: 'storageaccountidrisscontainer'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
