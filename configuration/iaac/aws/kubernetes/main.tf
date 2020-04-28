@@ -33,7 +33,7 @@ module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "in28minutes-cluster"
   cluster_version = "1.14"
-  subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
+  subnets         = ["subnet-c545baae", "subnet-c65367bc"] #CHANGE
   #subnets = data.aws_subnet_ids.subnets.ids
   vpc_id          = aws_default_vpc.default.id
 
@@ -79,5 +79,5 @@ resource "kubernetes_cluster_role_binding" "example" {
 
 # Needed to set the default region
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-east-2"
 }
