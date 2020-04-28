@@ -3,6 +3,11 @@ resource "azurerm_resource_group" "resource_group" {
   location = var.location
 }
 
+provider "azurerm" {
+  version = "~>2.0.0"
+  features {}
+}
+
 resource "azurerm_kubernetes_cluster" "terraform-k8s" {
   name                = "${var.cluster_name}_${var.environment}"
   location            = azurerm_resource_group.resource_group.location
@@ -20,8 +25,9 @@ resource "azurerm_kubernetes_cluster" "terraform-k8s" {
   default_node_pool {
     name            = "agentpool"
     node_count      = var.node_count
-    vm_size         = "Standard_DS1_v2"
-  }
+    vm_size         = "Standard_F2s_v2"
+    #"Standard_DS1_v2"
+}
 
   service_principal {
     client_id     = var.client_id
