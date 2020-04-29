@@ -9,25 +9,17 @@ resources:
 - repo: self
 
 variables:
-  tag: 35
-  #'$(Build.BuildId)'
+  tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build and push image
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        containerRegistry: 'az-devops-docker'
+        repository: 'idrissmez / currency-exchange-devops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
@@ -58,4 +50,4 @@ stages:
         kubernetesServiceConnection: 'aws-k8s-cluster-sc'
         namespace: 'default'
         manifests: '$(System.ArtifactsDirectory)/configuration/kubernetes/deployment.yaml'
-        containers: in28min/currency-exchange-devops:$(tag)
+        containers: idrissmez/currency-exchange-devops:$(tag)
