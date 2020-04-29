@@ -24,7 +24,7 @@ stages:
       displayName: Build and push image
       inputs:
         containerRegistry: 'az-devops-docker'
-        repository: 'idrissmez / currency-exchange-devops'
+        repository: idrissmez/currency-exchange-devops
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
