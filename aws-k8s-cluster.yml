@@ -21,3 +21,9 @@ steps:
     backendServiceAWS: 'aws-terraform-sc'
     backendAWSBucketName: 'terraform-backend-idriss'
     backendAWSKey: 'k8s-dev.tfstate'
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'aws'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/aws/kubernetes'
+    environmentServiceNameAWS: 'aws-terraform-sc'
